@@ -12,7 +12,7 @@ class CryptocurrencyService {
   // Obtener datos de criptomonedas de CoinGecko
   async obtenerDatosDeCoinGecko() {
     try {
-      const response = await axios.get(`${this.coinGeckoUrl}/some_endpoint`); // Reemplaza 'some_endpoint' con la ruta adecuada de CoinGecko
+      const response = await axios.get(`${this.coinGeckoUrl}/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false`); // Reemplaza 'some_endpoint' con la ruta adecuada de CoinGecko
       return response.data;
     } catch (error) {
       throw error;
