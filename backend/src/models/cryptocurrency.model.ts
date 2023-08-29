@@ -1,36 +1,155 @@
-import {Model, model, property} from '@loopback/repository';
+import { Entity, model, property } from "@loopback/repository";
 
-@model({settings: {strict: false}})
-export class Cryptocurrency extends Model {
+@model({ settings: { strict: false } })
+export class Cryptocurrency extends Entity {
   @property({
-    type: 'string',
-    required: true,
+    type: "string",
+    id: true,
+    generated: false,
   })
-  name: string;
+  id: string;
 
   @property({
-    type: 'number',
-    required: true,
-  })
-  price: number;
-
-  @property({
-    type: 'string',
+    type: "string",
     required: true,
   })
   symbol: string;
 
   @property({
-    type: 'number',
+    type: "string",
     required: true,
   })
-  marketCap: number;
+  name: string;
 
-  // Define well-known properties here
+  @property({
+    type: "string",
+  })
+  image: string;
 
-  // Indexer property to allow additional data
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  [prop: string]: any;
+  @property({
+    type: "number",
+    required: true,
+  })
+  current_price: number;
+
+  @property({
+    type: "number",
+    required: true,
+  })
+  market_cap: number;
+
+  @property({
+    type: "number",
+    required: true,
+  })
+  market_cap_rank: number;
+
+  @property({
+    type: "number",
+  })
+  fully_diluted_valuation?: number;
+
+  @property({
+    type: "number",
+    required: true,
+  })
+  total_volume: number;
+
+  @property({
+    type: "number",
+    required: true,
+  })
+  high_24h: number;
+
+  @property({
+    type: "number",
+    required: true,
+  })
+  low_24h: number;
+
+  @property({
+    type: "number",
+    required: true,
+  })
+  price_change_24h: number;
+
+  @property({
+    type: "number",
+    required: true,
+  })
+  price_change_percentage_24h: number;
+
+  @property({
+    type: "number",
+    required: true,
+  })
+  market_cap_change_24h: number;
+
+  @property({
+    type: "number",
+    required: true,
+  })
+  market_cap_change_percentage_24h: number;
+
+  @property({
+    type: "number",
+    required: true,
+  })
+  circulating_supply: number;
+
+  @property({
+    type: "number",
+  })
+  total_supply?: number;
+
+  @property({
+    type: "number",
+  })
+  max_supply?: number;
+
+  @property({
+    type: "number",
+  })
+  ath?: number;
+
+  @property({
+    type: "number",
+  })
+  ath_change_percentage?: number;
+
+  @property({
+    type: "string",
+  })
+  ath_date?: string;
+
+  @property({
+    type: "number",
+  })
+  atl?: number;
+
+  @property({
+    type: "number",
+  })
+  atl_change_percentage?: number;
+
+  @property({
+    type: "string",
+  })
+  atl_date?: string;
+
+  @property({
+    type: "object",
+  })
+  roi?: {
+    times: number;
+    currency: string;
+    percentage: number;
+  };
+
+  @property({
+    type: "string",
+  })
+  last_updated?: string;
 
   constructor(data?: Partial<Cryptocurrency>) {
     super(data);
@@ -38,7 +157,8 @@ export class Cryptocurrency extends Model {
 }
 
 export interface CryptocurrencyRelations {
-  // describe navigational properties here
+  // Puedes definir relaciones si es necesario
 }
 
-export type CryptocurrencyWithRelations = Cryptocurrency & CryptocurrencyRelations;
+export type CryptocurrencyWithRelations = Cryptocurrency &
+  CryptocurrencyRelations;
