@@ -1,7 +1,7 @@
 // common/models/cryptocurrency.js
 module.exports = function(Cryptocurrency) {
     Cryptocurrency.observe('after save', (ctx, next) => {
-      const CryptocurrencyService = require('../../services/cryptocurrency-service'); // Ajusta la ruta según tu estructura
+      const CryptocurrencyService = require('../services/cryptocurrency-service'); // Ajusta la ruta según tu estructura
       const cryptocurrencyService = new CryptocurrencyService();
   
       // Configura un cron job para actualizar los datos cada hora
